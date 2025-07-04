@@ -12,6 +12,8 @@
             <div>
                 <a href="{{ route('siswa.index') }}" class="btn btn-sm btn-light me-2">Siswa</a>
                 <a href="{{ route('spp.index') }}" class="btn btn-sm btn-light">SPP</a>
+                 <a href="{{ route('tagihan.index') }}" class="btn btn-sm btn-light">Tagihan</a>
+                  <a href="{{ route('tagihan.laporan') }}" class="btn btn-sm btn-light">Laporan</a>
             </div>
         </div>
     </nav>

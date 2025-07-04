@@ -22,7 +22,7 @@
             <select name="status" class="form-control">
                 <option value="">-- Semua Status --</option>
                 <option value="Lunas" {{ request('status') == 'Lunas' ? 'selected' : '' }}>Lunas</option>
-                <option value="Belum Lunas" {{ request('status') == 'Belum Lunas' ? 'selected' : '' }}>Belum Lunas</option>
+                <option value="belum_bayar" {{ request('status') == 'belum_bayar' ? 'selected' : '' }}>Belum Lunas</option>
             </select>
         </div>
 

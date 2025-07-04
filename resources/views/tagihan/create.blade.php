@@ -61,8 +61,8 @@
             <label>Status</label>
             <select name="status" class="form-control" required>
                 <option value="">-- Pilih Status --</option>
-                <option value="Lunas" {{ old('status') == 'Lunas' ? 'selected' : '' }}>Lunas</option>
-                <option value="Belum Lunas" {{ old('status') == 'Belum Lunas' ? 'selected' : '' }}>Belum Lunas</option>
+                <option value="lunas" {{ old('status') == 'lunas' ? 'selected' : '' }}>Lunas</option>
+                <option value="belum_bayar" {{ old('status') == 'belum_bayar' ? 'selected' : '' }}>Belum Lunas</option>
             </select>
         </div>
 

@@ -31,7 +31,7 @@
                     <td>Rp {{ number_format($item->spp->nominal, 0, ',', '.') }}</td>
                     <td>
                         <span class="badge bg-{{ $item->status == 'Lunas' ? 'success' : 'warning' }}">
-                            {{ $item->status }}
+                            {{ $item->status == 'lunas' ? 'Lunas' : 'belum lunas' }}
                         </span>
                     </td>
                     <td>

@@ -31,7 +31,7 @@
         </form>
     @endif
 
-    <a href="{{ route('tagihan.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+    <a href="{{ route('spp.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
     <form action="{{ route('tagihan.destroy', $item->id) }}" method="POST" style="display:inline">
         @csrf
         @method('DELETE')

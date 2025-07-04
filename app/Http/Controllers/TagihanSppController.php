@@ -32,7 +32,7 @@ class TagihanSppController extends Controller
             'spp_id' => 'required|exists:mutia_spp,id',
             'bulan' => 'required',
             'tahun' => 'required|digits:4',
-            'status' => 'required|in:Lunas,Belum Lunas',
+            'status' => 'required|in:lunas,belum_bayar',
         ]);
 
         TagihanSpp::create($request->all());
@@ -58,7 +58,7 @@ class TagihanSppController extends Controller
             'spp_id' => 'required|exists:mutia_spp,id',
             'bulan' => 'required',
             'tahun' => 'required|digits:4',
-            'status' => 'required|in:Lunas,Belum Lunas',
+            'status' => 'required|in:lunas,belum_bayar',
         ]);
 
         $tagihan = TagihanSpp::findOrFail($id);
@@ -78,7 +78,7 @@ class TagihanSppController extends Controller
     public function bayar($id)
 {
     $tagihan = TagihanSpp::findOrFail($id);
-    $tagihan->status = 'Lunas';
+    $tagihan->status = 'lunas';
     $tagihan->save();
 
     return redirect()->route('tagihan.index')->with('success', 'Tagihan berhasil dibayar');
