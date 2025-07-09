@@ -40,10 +40,10 @@
             </select>
         </div>
 
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label>Tahun</label>
             <input type="number" name="tahun" class="form-control" value="{{ $tagihan->tahun }}" required>
-        </div>
+        </div> --}}
 
         <div class="mb-3">
             <label>SPP (Nominal)</label>

@@ -8,7 +8,7 @@ class TagihanSpp extends Model
 {
     protected $table = 'mutia_tagihan_spp';
 
-    protected $fillable = ['siswa_id', 'spp_id', 'bulan', 'tahun', 'status'];
+    protected $fillable = ['siswa_id', 'spp_id', 'bulan', 'status'];
 
     public function siswa()
     {

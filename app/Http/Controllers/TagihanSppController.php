@@ -17,28 +17,51 @@ class TagihanSppController extends Controller
     }
 
     // TAMPILKAN FORM TAMBAH TAGIHAN
-    public function create()
-    {
-        $siswa = Siswa::all();
-        $spp = Spp::all();
-        return view('tagihan.create', compact('siswa', 'spp'));
-    }
+   public function create()
+{
+    $kelasList = Siswa::select('kelas')->distinct()->pluck('kelas');
+    $spp = Spp::all();
+    return view('tagihan.create', compact('kelasList', 'spp'));
+}
+
 
     // SIMPAN DATA TAGIHAN BARU
-    public function store(Request $request)
-    {
-        $request->validate([
-            'siswa_id' => 'required|exists:mutia_siswa,id',
-            'spp_id' => 'required|exists:mutia_spp,id',
-            'bulan' => 'required',
-            'tahun' => 'required|digits:4',
-            'status' => 'required|in:lunas,belum_bayar',
-        ]);
+   public function store(Request $request)
+{
+    $request->validate([
+        'kelas' => 'required',
+        'spp_id' => 'required|exists:mutia_spp,id',
+        'bulan' => 'required',
+        'status' => 'required|in:lunas,belum_bayar',
+    ]);
 
-        TagihanSpp::create($request->all());
+    $siswaList = Siswa::where('kelas', $request->kelas)->get();
 
-        return redirect()->route('tagihan.index')->with('success', 'Tagihan berhasil ditambahkan');
+    $jumlah = 0;
+    foreach ($siswaList as $siswa) {
+        // Cek jika tagihan untuk siswa tersebut di bulan dan tahun yg sama sudah ada
+        $cek = TagihanSpp::where([
+            'siswa_id' => $siswa->id,
+            'bulan' => $request->bulan,
+          
+        ])->first();
+
+        if (!$cek) {
+            TagihanSpp::create([
+                'siswa_id' => $siswa->id,
+                'spp_id' => $request->spp_id,
+                'bulan' => $request->bulan,
+            
+                'status' => $request->status,
+            ]);
+            $jumlah++;
+        }
     }
+
+    return redirect()->route('tagihan.index')->with('success', 'Tagihan berhasil dibuat untuk ' . $jumlah . ' siswa di kelas ' . $request->kelas);
+}
+
+
 
     // TAMPILKAN FORM EDIT TAGIHAN
     public function edit($id)
@@ -57,7 +80,7 @@ class TagihanSppController extends Controller
             'siswa_id' => 'required|exists:mutia_siswa,id',
             'spp_id' => 'required|exists:mutia_spp,id',
             'bulan' => 'required',
-            'tahun' => 'required|digits:4',
+           
             'status' => 'required|in:lunas,belum_bayar',
         ]);
 
@@ -94,9 +117,7 @@ public function laporan(Request $request)
     if ($request->filled('status')) {
         $query->where('status', $request->status);
     }
-    if ($request->filled('tahun')) {
-        $query->where('tahun', $request->tahun);
-    }
+   
 
     $tagihan = $query->get();
 

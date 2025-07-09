@@ -27,12 +27,14 @@
                     <td>{{ $item->siswa->nama }}</td>
                     <td>{{ $item->siswa->kelas }}</td>
                     <td>{{ $item->bulan }}</td>
-                    <td>{{ $item->tahun }}</td>
+                    <td>{{ $item->spp->tahun }}</td>
                     <td>Rp {{ number_format($item->spp->nominal, 0, ',', '.') }}</td>
                     <td>
-                        <span class="badge bg-{{ $item->status == 'Lunas' ? 'success' : 'warning' }}">
-                            {{ $item->status == 'lunas' ? 'Lunas' : 'belum lunas' }}
-                        </span>
+                        @if($item->pembayaran && $item->pembayaran->status === 'diterima')
+                            <span class="badge bg-success">Lunas</span>
+                        @else
+                            <span class="badge bg-warning">Belum Lunas</span>
+                        @endif
                     </td>
                     <td>
                         <a href="{{ route('tagihan.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>

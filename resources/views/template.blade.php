@@ -23,7 +23,7 @@
     </div>
 
     <footer class="text-center mt-5 mb-3 text-muted">
-        &copy; {{ date('Y') }} Bro Mutia - SPP App
+        &copy; {{ date('Y') }}  Mutia Marjuli Putri - SPP App
     </footer>
 
 </body>

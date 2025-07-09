@@ -21,15 +21,15 @@
             <label>Status</label>
             <select name="status" class="form-control">
                 <option value="">-- Semua Status --</option>
-                <option value="Lunas" {{ request('status') == 'Lunas' ? 'selected' : '' }}>Lunas</option>
+                <option value="Lunas" {{ request('status') == 'diterima' ? 'selected' : '' }}>Lunas</option>
                 <option value="belum_bayar" {{ request('status') == 'belum_bayar' ? 'selected' : '' }}>Belum Lunas</option>
             </select>
         </div>
 
-        <div class="col-md-2">
+        {{-- <div class="col-md-2">
             <label>Tahun</label>
             <input type="number" name="tahun" class="form-control" value="{{ request('tahun') }}">
-        </div>
+        </div> --}}
 
         <div class="col-md-3 d-flex align-items-end">
             <button type="submit" class="btn btn-primary">Tampilkan</button>
@@ -43,7 +43,7 @@
                 <th>Nama Siswa</th>
                 <th>Kelas</th>
                 <th>Bulan</th>
-                <th>Tahun</th>
+                {{-- <th>Tahun</th> --}}
                 <th>Nominal</th>
                 <th>Status</th>
             </tr>
@@ -54,7 +54,7 @@
                     <td>{{ $item->siswa->nama }}</td>
                     <td>{{ $item->siswa->kelas }}</td>
                     <td>{{ $item->bulan }}</td>
-                    <td>{{ $item->tahun }}</td>
+                    {{-- <td>{{ $item->tahun }}</td> --}}
                     <td>Rp {{ number_format($item->spp->nominal, 0, ',', '.') }}</td>
                     <td>
                         <span class="badge bg-{{ $item->status == 'Lunas' ? 'success' : 'warning' }}">

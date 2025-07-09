@@ -18,17 +18,18 @@
     <form action="{{ route('tagihan.store') }}" method="POST">
         @csrf
 
-        <div class="mb-3">
-            <label>Nama Siswa</label>
-            <select name="siswa_id" class="form-control" required>
-                <option value="">-- Pilih Siswa --</option>
-                @foreach ($siswa as $s)
-                    <option value="{{ $s->id }}" {{ old('siswa_id') == $s->id ? 'selected' : '' }}>
-                        {{ $s->nama }} - {{ $s->kelas }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
+       <div class="mb-3">
+    <label>Kelas</label>
+    <select name="kelas" class="form-control" required>
+        <option value="">-- Pilih Kelas --</option>
+        @foreach ($kelasList as $kls)
+            <option value="{{ $kls }}" {{ old('kelas') == $kls ? 'selected' : '' }}>
+                {{ $kls }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
 
         <div class="mb-3">
             <label>Bulan</label>
@@ -40,10 +41,10 @@
             </select>
         </div>
 
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label>Tahun</label>
             <input type="number" name="tahun" class="form-control" value="{{ old('tahun') }}" required>
-        </div>
+        </div> --}}
 
         <div class="mb-3">
             <label>SPP (Nominal)</label>
