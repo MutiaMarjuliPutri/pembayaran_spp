@@ -87,25 +87,32 @@ class SiswaAuthController extends Controller
 
     // Proses bayar
     public function prosesBayar(Request $request, $id)
-    {
-        $siswaId = Session::get('siswa_id');
+{
+    $siswaId = Session::get('siswa_id');
 
-        $tagihan = DB::table('mutia_tagihan_spp')
-            ->join('mutia_spp', 'mutia_tagihan_spp.spp_id', '=', 'mutia_spp.id')
-            ->where('mutia_tagihan_spp.id', $id)
-            ->select('mutia_spp.nominal')
-            ->first();
+    $tagihan = DB::table('mutia_tagihan_spp')
+        ->join('mutia_spp', 'mutia_tagihan_spp.spp_id', '=', 'mutia_spp.id')
+        ->where('mutia_tagihan_spp.id', $id)
+        ->select('mutia_spp.nominal')
+        ->first();
 
-        DB::table('mutia_pembayaran')->insert([
-            'tagihan_id'    => $id,
-            'siswa_id'      => $siswaId,
-            'status'        => 'diterima',
-            'tanggal_bayar' => now(),
-            'jumlah_bayar'  => $tagihan->nominal,
-            'created_at'    => now(),
-            'updated_at'    => now(),
-        ]);
+    // Insert ke tabel pembayaran
+    DB::table('mutia_pembayaran')->insert([
+        'tagihan_id'    => $id,
+        'siswa_id'      => $siswaId,
+        'status'        => 'diterima',
+        'tanggal_bayar' => now(),
+        'jumlah_bayar'  => $tagihan->nominal,
+        'created_at'    => now(),
+        'updated_at'    => now(),
+    ]);
 
-        return redirect()->route('siswa.tagihan')->with('success', 'Pembayaran berhasil.');
-    }
+    // Update status tagihan jadi lunas
+    DB::table('mutia_tagihan_spp')
+        ->where('id', $id)
+        ->update(['status' => 'lunas']);
+
+    return redirect()->route('siswa.tagihan')->with('success', 'Pembayaran berhasil.');
+}
+
 }

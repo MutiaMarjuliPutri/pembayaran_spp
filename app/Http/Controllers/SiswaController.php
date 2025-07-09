@@ -10,7 +10,7 @@ class SiswaController extends Controller
     // Tampilkan semua siswa
     public function index()
     {
-        $siswa = Siswa::all();
+         $siswa = Siswa::all()->groupBy('kelas');
         return view('siswa.index', compact('siswa'));
     }
 
@@ -36,10 +36,10 @@ class SiswaController extends Controller
     }
 
     // Tampilkan detail siswa (opsional)
-    public function show(Siswa $siswa)
-    {
-        return view('siswa.show', compact('siswa'));
-    }
+    // public function show(Siswa $siswa)
+    // {
+    //     return view('siswa.show', compact('siswa'));
+    // }
 
     // Tampilkan form edit
     public function edit(Siswa $siswa)

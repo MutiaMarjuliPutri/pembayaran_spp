@@ -56,14 +56,13 @@
                 @endforeach
             </select>
         </div>
-
-        <div class="mb-3">
-            <label>Status</label>
-            <select name="status" class="form-control" required>
-                <option value="Lunas" {{ $tagihan->status == 'Lunas' ? 'selected' : '' }}>Lunas</option>
-                <option value="Belum Lunas" {{ $tagihan->status == 'Belum Lunas' ? 'selected' : '' }}>Belum Lunas</option>
-            </select>
-        </div>
+<div class="mb-3">
+    <label>Status</label>
+    <select name="status" class="form-control" required>
+        <option value="lunas" {{ $tagihan->status == 'lunas' ? 'selected' : '' }}>Lunas</option>
+        <option value="belum_bayar" {{ $tagihan->status == 'belum_bayar' ? 'selected' : '' }}>Belum Lunas</option>
+    </select>
+</div>
 
         <button type="submit" class="btn btn-success">Update</button>
         <a href="{{ route('tagihan.index') }}" class="btn btn-secondary">Kembali</a>

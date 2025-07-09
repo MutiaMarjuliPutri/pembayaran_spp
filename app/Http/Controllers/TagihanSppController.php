@@ -12,7 +12,11 @@ class TagihanSppController extends Controller
     // TAMPILKAN SEMUA TAGIHAN
     public function index()
     {
-        $tagihan = TagihanSpp::with(['siswa', 'spp'])->get();
+     $tagihan = TagihanSpp::with(['siswa', 'spp', 'pembayaran'])
+                ->get()
+                ->groupBy(function ($item) {
+                    return $item->siswa->kelas;
+                });
         return view('tagihan.index', compact('tagihan'));
     }
 
@@ -114,14 +118,21 @@ public function laporan(Request $request)
     if ($request->filled('siswa_id')) {
         $query->where('siswa_id', $request->siswa_id);
     }
+
     if ($request->filled('status')) {
         $query->where('status', $request->status);
     }
-   
+
+    if ($request->filled('kelas')) {
+        $query->whereHas('siswa', function ($q) use ($request) {
+            $q->where('kelas', 'like', '%' . $request->kelas . '%');
+        });
+    }
 
     $tagihan = $query->get();
 
     return view('tagihan.laporan', compact('tagihan', 'siswa'));
 }
+
 
 }
