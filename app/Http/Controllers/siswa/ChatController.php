@@ -35,5 +35,5 @@ class ChatController extends Controller
         ]);
 
         return redirect()->back();
-    }
+}
 }

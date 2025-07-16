@@ -92,12 +92,13 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('siswa.dashboard_siswa') }}">
             <img src="{{ asset('gambar/logosekolah.png') }}" alt="Logo Sekolah">
-            SMKKPAY
+            SMKK Payment
         </a>
 
         <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <i class="bi bi-list" style="font-size:1.5rem;"></i>
         </button>
+        
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto align-items-center">

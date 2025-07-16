@@ -49,7 +49,7 @@
     <div class="d-flex flex-column flex-shrink-0 p-3 sidebar" style="width: 250px; height: 100vh;">
         <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center mb-4 text-white text-decoration-none">
             <img src="{{ asset('gambar/logosekolah.png') }}" alt="Logo" width="40" class="me-2">
-            <span class="fs-5 fw-semibold">SMKAMPAY</span>
+            <span class="fs-5 fw-semibold">SMK Payment</span>
         </a>
         <ul class="nav nav-pills flex-column mb-auto">
             <li><a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a></li>

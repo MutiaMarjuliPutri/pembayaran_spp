@@ -19,6 +19,7 @@ class ChatController extends Controller
             ->groupBy('sender_id')
             ->with('sender')
             ->get();
+            
 
         return view('admin.chat.index', compact('users'));
     }
@@ -49,5 +50,5 @@ class ChatController extends Controller
         ]);
 
         return redirect()->back();
-    }
+}
 }

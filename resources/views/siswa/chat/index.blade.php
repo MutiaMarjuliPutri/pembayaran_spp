@@ -88,7 +88,7 @@
 <div class="container py-3">
     <div class="card chat-card">
         <div class="chat-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0"><i class="bi bi-chat-dots-fill me-2"></i>Admin DPlay</h5>
+            <h5 class="mb-0"><i class="bi bi-chat-dots-fill me-2"></i>SMKKAMPAY</h5>
             <span class="chat-badge">● Online</span>
         </div>
 
